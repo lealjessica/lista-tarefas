@@ -1,5 +1,6 @@
 import React from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { Loader2 } from 'lucide-react';
 import { TaskProvider, useTasks } from './context/TaskContext';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
@@ -13,8 +14,19 @@ import { LogoutModal } from './components/auth/LogoutModal';
 import { LoginView } from './components/auth/LoginView';
 
 const AppContent: React.FC = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
   const { currentTab, taskToDelete, confirmDeleteTask, cancelDeleteTask } = useTasks();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-indigo-900 to-slate-900 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 size={32} className="text-indigo-400 animate-spin" />
+          <p className="text-sm text-indigo-300/70">Carregando...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return <LoginView />;

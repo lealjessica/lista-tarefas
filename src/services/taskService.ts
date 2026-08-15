@@ -1,5 +1,5 @@
 import { Task } from '../types/task';
-import { LocalStorageTaskService } from './localStorageService';
+import { SupabaseTaskService } from './supabaseService';
 
 export interface ITaskService {
   getTasks(): Promise<Task[]>;
@@ -10,8 +10,7 @@ export interface ITaskService {
   reorderTasks?(taskIds: string[]): Promise<boolean>;
 }
 
-// Service Factory para permitir alternar facilmente para Supabase quando desejado
+// Factory: retorna o serviço de persistência ativo
 export function getTaskService(): ITaskService {
-  // Padrão atual: LocalStorage
-  return new LocalStorageTaskService();
+  return new SupabaseTaskService();
 }

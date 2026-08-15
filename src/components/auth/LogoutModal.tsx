@@ -35,7 +35,7 @@ export const LogoutModal: React.FC = () => {
 
         <div className="flex items-center gap-2 text-xs text-emerald-600 bg-emerald-50/60 p-2.5 rounded-lg border border-emerald-100 mb-2">
           <CheckCircle size={14} className="shrink-0" />
-          <span>Suas tarefas estão salvas com segurança no armazenamento local.</span>
+          <span>Suas tarefas estão salvas com segurança na nuvem com o Supabase.</span>
         </div>
       </div>
 
